@@ -34,4 +34,8 @@ public class Teacher extends Person {
     public boolean isTeaching(Student student) {
         return teacherClasses.contains(Optional.ofNullable(student.getClassNumber()).orElse(0).toString());
     }
+
+    public List<String> getTeacherClasses() {
+        return teacherClasses;
+    }
 }
