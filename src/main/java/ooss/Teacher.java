@@ -1,30 +1,37 @@
 package ooss;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Teacher extends Person {
 
-    private String teacherInfo = "";
+    private List<String> teacherClasses = new ArrayList<>();
     public Teacher(int id, String name, int age) {
         super(id, name, age);
     }
 
     @Override
     public String introduce() {
-        return super.introduce().concat(" I am a teacher.").concat(teacherInfo);
+        String introduction = super.introduce().concat(" I am a teacher.");
+        if(teacherClasses.isEmpty()){
+            return introduction;
+        }
+        String classes = String.join(", ", teacherClasses);
+        return introduction.concat(" I teach Class " + classes + ".");
     }
 
     public void assignTo(Klass klass) {
-        if(klass != null){
-            teacherInfo = "I teach class " + klass.getNumber();
+        if(klass != null) {
+            teacherClasses.add(String.valueOf(klass.getNumber()));
         }
     }
 
     public boolean belongsTo(Klass klass) {
 
-        return teacherInfo.contains("class " + klass.getNumber());
+        return teacherClasses.contains(String.valueOf(klass.getNumber()));
+    }
+
+    public boolean isTeaching(Student student) {
+        return teacherClasses.contains(Optional.ofNullable(student.getClassNumber()).orElse(0).toString());
     }
 }

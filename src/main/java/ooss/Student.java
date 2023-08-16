@@ -1,8 +1,10 @@
 package ooss;
 
+import java.util.Optional;
+
 public class Student extends Person {
 
-    private String classInfo = "";
+    private Integer classNumber = null;
 
     public Student(int id, String name, int age) {
         super(id, name, age);
@@ -10,17 +12,25 @@ public class Student extends Person {
 
     @Override
     public String introduce() {
-        return super.introduce().concat(" I am a student.").concat(this.classInfo);
+        String introduction = super.introduce().concat(" I am a student.");
+        if(classNumber != null){
+            return introduction.concat(" I am in class " + classNumber + ".");
+        }
+        return introduction;
     }
 
     public void join(Klass klass) {
         if(klass != null){
-            classInfo = " I am in class " + klass.getNumber() + ".";
+            classNumber = klass.getNumber();
         }
     }
 
     public boolean isIn(Klass klass) {
 
-        return classInfo.contains("class " + klass.getNumber());
+        return klass.getNumber() == Optional.ofNullable(classNumber).orElse(0);
+    }
+
+    public Integer getClassNumber() {
+        return classNumber;
     }
 }
