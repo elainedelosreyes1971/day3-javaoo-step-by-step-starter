@@ -1,5 +1,26 @@
 package ooss;
 
+import java.util.Objects;
+
 public class Klass {
 
+    private final int classNo;
+
+    public Klass(int classNo) {
+
+        this.classNo = classNo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Klass klass = (Klass) o;
+        return classNo == klass.classNo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(classNo);
+    }
 }
