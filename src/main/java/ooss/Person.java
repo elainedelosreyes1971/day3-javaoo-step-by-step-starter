@@ -30,4 +30,16 @@ public class Person {
     public int hashCode() {
         return Objects.hash(id, name, age);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }

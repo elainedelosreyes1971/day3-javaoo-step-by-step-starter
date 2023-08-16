@@ -4,11 +4,10 @@ import java.util.Objects;
 
 public class Klass {
 
-    private final int classNo;
+    private final int number;
 
-    public Klass(int classNo) {
-
-        this.classNo = classNo;
+    public Klass(int number) {
+        this.number = number;
     }
 
     @Override
@@ -16,11 +15,15 @@ public class Klass {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Klass klass = (Klass) o;
-        return classNo == klass.classNo;
+        return number == klass.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(classNo);
+        return Objects.hash(number);
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
